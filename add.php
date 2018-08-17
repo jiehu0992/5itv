@@ -9,7 +9,6 @@ if('POST'==$_SERVER['REQUEST_METHOD']){
 
     $node=getNodeById($id);
     $pnode=getNodeById($pid);
-
     if($_POST['isdrop']){//删除
         if($node){
             $num=$node->R-$node->L+1;
@@ -366,3 +365,4 @@ $('.tree_moveto').click(function(){
 </script>
 </body>
 </html>
+二叉数左右值 数据增改删移动（仅支持name字段）
