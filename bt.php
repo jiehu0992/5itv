@@ -15,7 +15,6 @@
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 }
-
 .tree li {
 	float: left; text-align: center;
 	list-style-type: none;
