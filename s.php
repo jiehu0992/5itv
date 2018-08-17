@@ -1,4 +1,4 @@
-﻿ <html>
+ <html>
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />	 
 <!--主要样式-->
 <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
@@ -20,6 +20,5 @@ include("conn.php");//数据库连接
 	}
 	
 ?>
-
 	</body>
 </html>
