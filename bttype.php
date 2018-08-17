@@ -63,7 +63,6 @@ function sonTree($arr,$tree,$level,$type){
 	return $categorylist;
 }
 
-
 $menu=lefttree();//调用函数
 
 ?>
