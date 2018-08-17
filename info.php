@@ -40,7 +40,6 @@
 -moz-writing-mode: vertical-rl;
 -ms-writing-mode: vertical-rl;
 writing-mode: vertical-rl; /* new syntax */
-
 			
 -webkit-text-orientation: upright;
 -moz-text-orientation: upright;
