@@ -6,7 +6,6 @@ $sql=mysql_query("select * from tree_lr");
 			$array[]=$row;         //查出数据保存到数组中
 		}
 
-
 //后台左侧循环树形栏目
 function lefttree(){
 	global $array; //设置全局变量
