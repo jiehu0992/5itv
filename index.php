@@ -25,8 +25,7 @@ $(function(){
         e.stopPropagation();
     });
 });
-</script>
-	
+</script>	
 </head>
 <body>
 
