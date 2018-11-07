@@ -5,10 +5,11 @@
   三、下一步 1、优化实现第二条 2、增加组册页面，实现用户的增改，实现add.php的权限修改 3、新增其它样式 4、实现数据导出excel、world、pdf输出及excel数据导入 四、远期计划 1、实现多用户多姓氏的数据展示 2、实现合谱 3、实现数据比对寻源
   四、本人不会php，很反感那些自持会点php技术就要挟人，张口闭口都是钱的人，这违背了php的初衷，分享在于也需对你有用，不是让你拿去卖钱什么的，如有这样的想法或者这样做了，愿你早日升天。
 
-demo: familytree家谱宗谱刘三才族裔刘氏家谱
+familytree家谱宗谱刘三才族裔刘氏家谱
 http://demo.5itv.org/index.php
-demo：欧式版式家谱 http://demo.5itv.org/os.php 
-demo：塔式版式家谱 http://demo.5itv.org/bt.php 
+欧式版式家谱 http://demo.5itv.org/os.php 
+塔式版式家谱 http://demo.5itv.org/bt.php 
+ztree样式  http://demo.5itv.org/ztree.html
 电视直播 http://www.tvsbar.com
 更新日志
 20180816 上传源码
