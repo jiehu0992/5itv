@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<title>刘氏族谱ztree样式</title>
+
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="zTree_v3/css/zTreeStyle/zTreeStyle.css">
+<script type="text/javascript" src="zTree_v3/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript"  src="zTree_v3/js/jquery.ztree.core-3.5.js"></script>
+<style>
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+div,p,table,th,td {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    font-size: 14px;
+    font-family: dotum, Verdana, Arial, Helvetica, AppleGothic, sans-serif;
+}
+
+#testIframe {
+    margin-left: 10px;
+}
+</style>
+
+<SCRIPT type="text/javascript">
+    var zTree;
+    var demoIframe;
+    var menuNode;
+    var setting = {
+        view : {
+            dblClickExpand : false,
+            showLine : true,
+            selectedMulti : false
+        },
+        data : {
+            simpleData : {
+                enable : true,
+                idKey : "id",
+                pIdKey : "pId",
+                rootPId : ""
+            }
+        },
+        callback : {
+            beforeClick : function(treeId, treeNode) {
+                var zTree = $.fn.zTree.getZTreeObj("tree");
+                if (treeNode.isParent) {
+                    zTree.expandNode(treeNode);
+                    return false;
+                } else {
+                    demoIframe.attr("src", treeNode.file);
+                    return true;
+                }
+            }
+        }
+    };
+
+
+    $(function(){
+        $.post("connztree.php", function(data){
+            menuNode=$.parseJSON(data);
+            for(var i=0;i<menuNode.length;i++){
+                 menuNode[i].name=decodeURI(menuNode[i].name);
+            }
+            var t = $("#tree");
+            t = $.fn.zTree.init(t, setting, menuNode);
+            demoIframe = $("#testIframe");
+            demoIframe.bind("load", loadReady);
+            console.info(menuNode);
+        });
+    });
+
+    function loadReady() {
+        var bodyH = demoIframe.contents().find("body").get(0).scrollHeight,
+        htmlH = demoIframe.contents().find("html").get(0).scrollHeight,
+        maxH = Math.max(bodyH, htmlH),
+        minH = Math.min(bodyH, htmlH),
+        h = demoIframe.height() >= maxH ? minH : maxH;
+        if (h < 530)
+            h = 530;
+        demoIframe.height(h);
+    }
+</SCRIPT>
+
+</head>
+
+<body>
+    <TABLE border=0 height=600px align=left>
+    
+                <ul id="tree" class="ztree" style="width:80%; overflow:auto;"></ul>
+    </TABLE>
+</body>
+</html>
