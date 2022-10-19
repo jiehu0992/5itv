@@ -1,6 +1,6 @@
 ### 家谱源码familytree php+mysql 二叉树左右值 
  **由于本人技术有限，PHP会的连皮毛都算不上，所以需要家谱系统爱好者及精通PHP的朋友来不断完善本系统，本系统会不定期更新，秉承自由共享精神尽我所能来一步步实现未实现的功能，不论三年还是五载……** 
-
+[ **php版本5.4** 以下并且 **关掉php错误提示** ， 数据库名treelcopy，如要修改为自己的数据库名如tree,请将conn.php里面的treelcopy修改为tree 数据库 **账号密码 均为root** 
   **  **一、** ** 已实现功能 源码无架构，目前有族谱树、欧式族谱、塔式族谱、ztree样式 四种样式，其中族谱树有详情页传值单独页面
   **  **二、** ** 目前存在的问题需要优化 1、add.php只能实现新增用户name字段（ID PID L R字段为自动生成），无法实现新增字段如info,mudi等字段的增改删 2、欧式族谱样式只实现的一个人行页面，未能实现一个代次（一个自辈）一行； 3、塔式族谱前几个代次显示的样式还不正确
 
@@ -9,9 +9,9 @@
  **五、** ztree样式（ztree连接sql动态版）需下载ztree_v3到根目录，ztree下载地址：https://gitee.com/zTree/zTree_v3
 familytree家谱宗谱刘三才族裔刘氏家谱
 http://demo.5itv.org/index.php
-欧式版式家谱 http://demo.5itv.org/os.php 
-塔式版式家谱 http://demo.5itv.org/bt.php 
-ztree样式  http://demo.5itv.org/ztree.html
+欧式版式家谱 http://demo.tvsbar.com/os.php 
+塔式版式家谱 http://demo.tvsbar.com/bt.php 
+ztree样式  http://demo.tvsbar.com/ztree.html
 电视直播 http://www.tvsbar.com
 更新日志
 20180816 上传源码
