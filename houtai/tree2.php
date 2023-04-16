@@ -1,10 +1,31 @@
 <?php
 include("../conn.php");//数据库连接
-$array=array();
-$sql=mysql_query("select * from tree_lr");
-		while ($row=mysql_fetch_array($sql)){
-			$array[]=$row;         //查出数据保存到数组中
-		}
+$stmt = mysqli_prepare($link, "SELECT COUNT(*) AS total, MAX(dc) AS maxdc FROM tree_lr WHERE name NOT LIKE ?");
+$search_term = '%出%';
+mysqli_stmt_bind_param($stmt, 's', $search_term);
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $total, $maxdc);
+mysqli_stmt_fetch($stmt);
+mysqli_stmt_close($stmt);
+
+// Prepare the query to fetch the required data
+$stmt = mysqli_prepare($link, "SELECT id, name, pid, sex, dc FROM tree_lr");
+mysqli_stmt_execute($stmt);
+mysqli_stmt_bind_result($stmt, $id, $name, $pid, $sex, $dc);
+
+$array = array();
+while (mysqli_stmt_fetch($stmt)) {
+    $array[] = array(
+        'id' => $id,
+        'name' => $name,
+        'pid' => $pid,
+        'sex' => $sex,
+        'dc' => $dc
+    );
+}
+mysqli_stmt_close($stmt);
+
+echo "<div style='position: fixed;margin: 0 auto;width: 100%;top: 0.6rem;z-index: -1;text-align: right;color: #1b7ac5;'>截至今日，本族共繁衍 ".$maxdc." 代，总计 ".$total." 人。</div>";
 
 
 //后台左侧循环树形栏目
@@ -26,7 +47,7 @@ function lefttree(){
 		foreach($tree[0] as $k=>$v){
 			$i++;
 			if($tree[$v["id"]]){
-				$categorylist.="<li><a href=\"/info.php?id=".$v["id"]."\" target=\"_blank\">".$v["name"]."</a>\n字辈：".$v["zibei"]."，刘氏第".$v["dc"]."世代，妻子：".$v["wname"]."。平生简介：".$v["info"]."";
+				$categorylist.="<li><a href=\"info.php?id=".$v["id"]."\" target=\"_blank\">".$v["name"]."</a>\n字辈：".$v["zibei"]."，刘氏第".$v["dc"]."世代，妻子：".$v["wname"]."。平生简介：".$v["info"]."";
 				$categorylist.="<ul>\n";
 				$categorylist.=sonTree($tree[$v["id"]],$tree,0,$type);
 				$categorylist.="</ul>\n";
@@ -34,7 +55,7 @@ function lefttree(){
 			}else{
 				if($v["is_link"]==0){
 				/*	$categorylist.="<li><span><i class=\"icon-minus-sign\"></i> ".$v["name"]."</span> </li>\n".$v["info"]."";*/
-					$categorylist.="<li><span><i class=\"icon-minus-sign\"></i><a href=\"/info.php?id=".$v["id"]."\" target=\"_blank\">".$v["name"]."</a></li>\n".$v["info"]."";
+					$categorylist.="<li><span><i class=\"icon-minus-sign\"></i><a href=\"info.php?id=".$v["id"]."\" target=\"_blank\">".$v["name"]."</a></li>\n".$v["info"]."";
 				}
 			}
 		}
@@ -43,27 +64,28 @@ function lefttree(){
 }
 
 
-function sonTree($arr,$tree,$level,$type){
-	$level++;
-	$ii=0;
-	foreach($arr as $k2=>$v2){
-		$ii++;
-
-		if($tree[$v2["id"]]){
-			$categorylist.="<li><span><i class=\"icon-minus-sign\"></i>".$v2["name"]."</span>\n";
-			$categorylist.="编号<font color=\"red\">".$v2["id"]."</font>，<a href=\"info2.php?id=".$v2["id"]."\" target=\"_blank\">生平简介</a>\n<a href=\"infoedit2.php?id=".$v2["id"]."\" target=\"_blank\">编辑详细</a>\n<a href=\"add.php\" target=\"_blank\">添加</a>\n第".$v2["dc"]."代".$v2["zibei"]."<ul>";
-			$categorylist.=sonTree($tree[$v2["id"]],$tree,$level,$type);
-			$categorylist.="</ul>\n";
-			$categorylist.="</li>\n";
-		}else{
-			if($v["is_link"]==0){
-			/*	$categorylist.="<li><span><i class=\"icon-minus-sign\"></i>".$v2["name"]."</span>\n字辈：<font color=\"red\">".$v2["zibei"]."</font>，刘氏第<font color=\"red\">".$v2["dc"]."</font>世代，妻子：<font color=\"red\">".$v2["wname"]."</font>。平生简介：".$v2["info"]."</li>";*/
-					$categorylist.="<li><span><i class=\"icon-minus-sign\"></i>".$v2["name"]."</span>\n编号<font color=\"red\">".$v2["id"]."</font>，<a href=\"info2.php?id=".$v2["id"]."\" target=\"_blank\">生平简介</a>\n<a href=\"infoedit2.php?id=".$v2["id"]."\" target=\"_blank\">编辑详细</a>\n<a href=\"add.php\" target=\"_blank\">添加</a>\n第".$v2["dc"]."代".$v2["zibei"]."";
-			}
-		}
-	}
-	return $categorylist;
+function sonTree($arr, $tree, $level, $type, $mysqli) {
+    $level++;
+    $ii = 0;
+    $categorylist = '';
+    foreach ($arr as $k2 => $v2) {
+        $ii++;
+        if ($tree[$v2["id"]]) {
+            $categorylist .= "<li><span><i class=\"icon-minus-sign\"></i>" . $v2["name"] . "</span>\n";
+            $categorylist .= "编号<font color=\"red\">" . $v2["id"] . "</font>，<a href=\"info2.php?id=" . $v2["id"] . "\" target=\"_blank\">生平简介</a>\n<a href=\"infoedit2.php?id=" . $v2["id"] . "\" target=\"_blank\">编辑详细</a>\n<a href=\"add.php\" target=\"_blank\">添加</a>\n第" . $v2["dc"] . "代" . $v2["zibei"] . "<ul>";
+            $categorylist .= sonTree($tree[$v2["id"]], $tree, $level, $type, $mysqli);
+            $categorylist .= "</ul>\n";
+            $categorylist .= "</li>\n";
+        } else {
+            if ($v2["is_link"] == 0) {
+                $color = ($v2["sex"] == '女') ? "#ff1493" : ""; // check if the sex value is female, then set the color to #ff1493
+                $categorylist .= "<li><span style=\"color:" . $color . "\"><i class=\"icon-minus-sign\"></i>" . $v2["name"] . "</span>\n编号<font color=\"red\">" . $v2["id"] . "</font>，<a href=\"info2.php?id=" . $v2["id"] . "\" target=\"_blank\">生平简介</a>\n<a href=\"infoedit2.php?id=" . $v2["id"] . "\" target=\"_blank\">编辑详细</a>\n<a href=\"add.php\" target=\"_blank\">添加</a>\n第" . $v2["dc"] . "代" . $v2["zibei"] . "";
+            }
+        }
+    }
+    return $categorylist;
 }
+
 
 
 $menu=lefttree();//调用函数
