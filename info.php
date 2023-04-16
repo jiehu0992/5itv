@@ -113,7 +113,7 @@ text-orientation: upright;
 
 <?php
 include("conn.php");//数据库连接
-$id=$_GET['id'];
+$id = (int)$_GET['id']; // 强制将传入的id参数转为整数类型，以防止SQL注入攻击
 $sql=mysql_query("select info,name,wname,dc,zibei,mudi from tree_lr where id='$id'");
 $datarow = mysql_num_rows($sql); 
  for($i=0;$i<$datarow;$i++){
@@ -135,6 +135,6 @@ $datarow = mysql_num_rows($sql);
 		</div>
 		</div>
 			</div>
-<div align="center">2018年爱视传媒制作http://liu.5itv.org</div>
+<div align="center">2018年爱视传媒制作http://demo.tvsbar.com</div>
 </body>
 </html>
