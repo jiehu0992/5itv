@@ -1,6 +1,6 @@
 <?php
 // Database connection using mysqli
-$mysqli = new mysqli("127.0.0.1","root","root", "Database");
+$mysqli = new mysqli("127.0.0.1","root","lsc606414lk", "demo");
 if ($mysqli->connect_errno) {
     die("Failed to connect to MySQL: " . $mysqli->connect_error);
 }
@@ -39,7 +39,7 @@ function sonTree($arr, $tree, $level = 1) {
     foreach ($arr as $k => $v) {
         if ($tree[$v['id']]) {
             $categorylist .= "<li><a href=\"#\" style='color: ";
-            $categorylist .= ($v['sex'] == '女') ? 'pink' : 'black';
+            $categorylist .= ($v['sex'] == '女') ? '#ff1493' : 'black';
             $categorylist .= ";'>{$v['name']}</a>\n";
             $categorylist .= "<ul>\n";
             $categorylist .= sonTree($tree[$v['id']], $tree, $level + 1);
@@ -48,7 +48,7 @@ function sonTree($arr, $tree, $level = 1) {
         } else {
             if ($v['is_link'] == 0) {
                 $categorylist .= "<li><a href=\"#\" style='color: ";
-                $categorylist .= ($v['sex'] == '女') ? 'pink' : 'black';
+                $categorylist .= ($v['sex'] == '女') ? '#ff1493' : 'black';
                 $categorylist .= ";'>{$v['name']}</a></li>\n";
             }
         }
