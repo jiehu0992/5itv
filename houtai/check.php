@@ -1,8 +1,9 @@
 <?php
-    require "conn.php";
+    require "../conn.php";
     $id = $_GET['id'];
-    $sql = mysql_query("SELECT * FROM tree_lr WHERE id=$id",$link);
-    $sql_arr = mysql_fetch_assoc($sql);
+   $id = $_GET['id'];
+$sql = mysqli_query($link, "SELECT * FROM tree_lr WHERE id=$id");
+$sql_arr = mysqli_fetch_assoc($sql);
 ?>
 
 <!DOCTYPE html>
