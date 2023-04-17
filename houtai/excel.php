@@ -6,23 +6,25 @@
 <body>
 <table  border="1" cellspacing="0">
          <tr><th>姓名</th><th>性别</th><th>配偶</th><th>父亲</th><th>祖父</th><th>母亲</th><th>世代</th><th>字辈</th><th>排行</th><th>兄弟</th><th>姐妹</th><th>子女</th><th>出生日期</th><th>纪念日期</th><th>家庭地址</th><th>葬于</th><th>通讯</th><th>民族</th><th>出生地址</th><th>字</th><th>号</th><th>籍贯</th><th>曾用名</th><th>婚姻</th><th>职业</th><th>学历</th><th>其他信息</th><th>继嗣</th><th>统计</th><th>备注</th></tr>
-    <?php
-        require "conn.php";
-         $sql = mysql_query("select * from tree_lr");
-         $datarow = mysql_num_rows($sql);
+        <?php
+        header("content-type:text/html;charset=utf-8");
+        error_reporting(E_ALL);
+        $link = mysqli_connect("localhost", "root", "root", "dataname") or die("连接数据库服务器失败！" . mysqli_connect_error()); //连接MySQL服务器
+        $sql = mysqli_query($link, "select * from tree_lr"); //查询操作
+         $datarow = mysqli_num_rows($sql);
             for($i=0;$i<$datarow;$i++){
-                $sql_arr = mysql_fetch_assoc($sql);
+                $sql_arr = mysqli_fetch_assoc($sql);
 
-    $name = $sql_arr['name'];
-    $sex =$sql_arr['sex'];
-    $wname  =$sql_arr['wname'];
-    $dad    =$sql_arr['dad'];
-    $gdad   =$sql_arr['gdad'];
-    $mother =$sql_arr['mother'];
-    $dc =$sql_arr['dc'];
-    $zibei =$sql_arr['zibei'];
-    $rank =$sql_arr['rank'];
-    //$rank ="";//$sql_arr['rank']
+            $name = $sql_arr['name'];
+            $sex =$sql_arr['sex'];
+            $wname  =$sql_arr['wname'];
+            $dad    =$sql_arr['dad'];
+            $gdad   =$sql_arr['gdad'];
+            $mother =$sql_arr['mother'];
+            $dc =$sql_arr['dc'];
+            $zibei =$sql_arr['zibei'];
+            $rank =$sql_arr['rank'];
+            //$rank ="";//$sql_arr['rank']
 
         if($rank == "长子"){$rank=1 ; }
         elseif ($rank == "次子") {            $rank=2 ;        }
