@@ -1,79 +1,49 @@
 <?php
-include("conn.php");//数据库连接
-$array=array();
-$sql=mysql_query("select * from tree_lr");
-		while ($row=mysql_fetch_array($sql)){
-			$array[]=$row;         //查出数据保存到数组中
-		}
+$servername = "localhost";
+$username = "root";
+$password = "root";
+$dbname = "dataname";
 
-//后台左侧循环树形栏目
-function lefttree(){
-	global $array; //设置全局变量
-	$tree = array();
-	$categorylist="";
-	if( $array ){
-		foreach ( $array as $v ){
-			//$pt = $v['pid'];
-			$pt = $v['pid'];
-			$list = @$tree[$pt] ? $tree[$pt] : array();
-			array_push( $list, $v );
-			$tree[$pt] = $list;
-		}
-	}
-	if(is_array($tree[0])){
-		$i = 0;
-		foreach($tree[0] as $k=>$v){
-			$i++;
-			if($tree[$v["id"]]){
-				$categorylist.=" 
-<div class=\"level top_line\"><div class=\"level_name\">第".$v["dc"]."世代</div>
-					<div class=\"member\">
-        <div style=\"\" class=\"member_name\">".$v["name"]."</div>
-        <div  class=\"member_desc\">".$v["info"]."</div> </div>	    
-        	 
-        		</div>";
-				$categorylist.="\n";
-				$categorylist.=sonTree($tree[$v["id"]],$tree,0,$type);
-			}else{
-				if($v["is_link"]==0){
-					$categorylist.=" ".$v["name"]." ".$v["info"]."	</div>";
-				}
-			}
-		}
-	}
-	return $categorylist;
+// Create connection
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+echo "Connected successfully";
+$array = array();
+// TODO Begin
+
+$sql = "SELECT MAX(dc) FROM tree_lr";
+$res = mysqli_query($conn, $sql);
+$test = array();
+while ($row = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
+    $test[] = $row;
+}
+$max = (int) $test[0]['MAX(dc)'];
+
+for ($i = 1; $i < $max; $i++) {
+    $sql = "SELECT * FROM tree_lr WHERE dc = {$i}";
+    $res = mysqli_query($conn, $sql);
+
+    while ($row = mysqli_fetch_array($res, MYSQLI_ASSOC)) {
+        $array[$i][] = $row;
+    }
 }
 
-
-function sonTree($arr,$tree,$level,$type){
-	$level++;
-	$ii=0;
-	foreach($arr as $k2=>$v2){
-		$ii++;
-
-		if($tree[$v2["id"]]){
-			$categorylist.="<div class=\"level top_line\"><div class=\"level_name\">第".$v2["dc"]."世代</div>
-				<div class=\"member\">
-        <div style=\"\" class=\"member_name\">".$v2["name"]."</div>
-        <div  class=\"member_desc\">".$v2["info"]."</div>      
-        	</div>          </div>	";
-				$categorylist.="	 \n";
-			$categorylist.=sonTree($tree[$v2["id"]],$tree,$level,$type);
-		}else{
-			if($v["is_link"]==0){
-				$categorylist.="<div class=\"level top_line\"> <div class=\"level_name\">第".$v2["dc"]."世代</div>
-					<div class=\"member\">
-        <div style=\"\" class=\"member_name\">".$v2["name"]."</div>
-        <div  class=\"member_desc\">".$v["info"]."</div>      
-        			</div>   	</div>        	";
-				$categorylist.="\n";
-			}
-		}
-	}
-	return $categorylist;
+$menu = '';
+foreach ($array as $key => $value) {
+    $menu .= "<div class='level top_line'>
+       <div class='level_name'>{$key}世代</div>";
+    foreach ($value as $item) {
+        $menu .= '<div class="member">
+        <div style="" class="member_name">' . $item['name'] . '</div>
+        <div class="member_desc">' . $item['dad'] . '' . $item['rank'] . '，祖父：' . $item['gdad'] . ',兄弟：' . $item['brother'] . '、姊妹：' . $item['sisters'] . '。<br/>' . $item['info'] . '</div>
+      </div>';
+    }
+    $menu .= "</div>";
 }
 
-
-$menu=lefttree();//调用函数
-
+echo $menu;
 ?>
