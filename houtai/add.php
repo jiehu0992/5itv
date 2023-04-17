@@ -1,6 +1,8 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
-include("conn.php");//数据库连接
+$link=mysql_connect("localhost","root","root") or die("连接数据库服务器失败！".mysql_error()); //连接MySQL服务器
+$db=mysql_select_db("dataname",$link);//链接数据库
+mysql_query("set names utf8");//设置编码
 if('POST'==$_SERVER['REQUEST_METHOD']){
     header('Content-Type: application/json; charset=utf-8');
     $id=$_POST['id']+0;
