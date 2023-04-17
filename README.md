@@ -1,8 +1,8 @@
-### 家谱源码familytree php+mysql 二叉树左右值 
+### 家谱源码familytree php+mysqli 二叉树左右值 
 
  **由于本人技术有限，PHP会的连皮毛都算不上，所以需要家谱系统爱好者及精通PHP的朋友来不断完善本系统，本系统会不定期更新，秉承自由共享精神尽我所能来一步步实现未实现的功能，不论三年还是五载……** </br>
 
-[ **php版本5.4** 以下并且 **关掉php错误提示** ， 数据库名treelcopy，如要修改为自己的数据库名如tree,请将conn.php里面的treelcopy修改为tree 数据库 **账号密码 均为root** </br>
+[ **php版本5.6** 以下并且 **关掉php错误提示** ， 数据库名treelcopy，如要修改为自己的数据库名如tree,请将conn.php里面的treelcopy修改为tree 数据库 **账号密码 均为root** </br>
 
   **  **一、** ** 已实现功能 源码无架构，目前有族谱树、欧式族谱、塔式族谱、ztree样式 四种样式，其中族谱树有详情页传值单独页面</br>
 
@@ -54,7 +54,7 @@ ztree样式  http://demo.tvsbar.com/ztree.html</br>
 
 by 爱视传媒5itv 20180816 1517152664@qq.com</br>
 
- ![输入图片说明](https://images.gitee.com/uploads/images/2020/0319/142833_ef090f88_1349966.png "QQ截图20200319142722.png") 
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0319/142833_ef090f88_1349966.png "QQ截图20200319142722.png") 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0319/142947_0a2d4a47_1349966.png "QQ截图20200319142528.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0319/143023_082a9836_1349966.png "QQ截图20200319142627.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0319/143012_37502031_1349966.png "QQ截图20200319142346.png")
