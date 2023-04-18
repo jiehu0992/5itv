@@ -1,6 +1,6 @@
 <?php
 // Database connection using mysqli
-$mysqli = new mysqli("127.0.0.1","root","lsc606414lk", "demo");
+$mysqli = new mysqli("127.0.0.1","root","root", "Database");
 if ($mysqli->connect_errno) {
     die("Failed to connect to MySQL: " . $mysqli->connect_error);
 }
