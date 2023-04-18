@@ -10,7 +10,6 @@ $res = mysqli_query($mysqli, $sql);
 if (!$res) {
     die('Error: ' . mysqli_error($mysqli));
 }
-
 $array = array();
 while ($row = mysqli_fetch_row($res)) {
     $menu = array(
