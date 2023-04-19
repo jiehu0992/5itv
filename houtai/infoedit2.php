@@ -11,7 +11,7 @@
 <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
 <body>
     <?php
-        $link = mysqli_connect("127.0.0.1", "root", "root", "database");
+        $link = mysqli_connect("127.0.0.1", "root", "lsc606414lk", "demo");
     if (!$link) {
         die("连接失败: " . mysqli_connect_error());
     }
@@ -277,10 +277,10 @@ while ( $rowx=mysqli_fetch_array($sqlx)) {//取出并拼接本人兄弟或姐妹
 		<td width="4%">女儿：</td>
 		<td width="13%"> <input type="text" name="daughter" value="<?php echo $da_name; ?>" readonly="readonly" /> </td>
 		<td width="4%" >生平：</td>
-		<?php
+        <?php
         if (!empty($sql_arr['wname'])) {
           if (!empty($son_name) && !empty($da_name)) {
-            $info = $sql_arr['name'] . '配妣' . $sql_arr['wname'] . ',生子' . $son_name . '，女' . $da_name . '。';
+            $info = $sql_arr['name'] . '配妣' . $sql_arr['wname'] . '，生子' . $son_name . '，女' . $da_name . '。';
           } elseif (!empty($son_name)) {
             $info = $sql_arr['name'] . '配妣' . $sql_arr['wname'] . '，生子' . $son_name . '。';
           } elseif (!empty($da_name)) {
@@ -290,17 +290,22 @@ while ( $rowx=mysqli_fetch_array($sqlx)) {//取出并拼接本人兄弟或姐妹
           }
         } else {
           if (!empty($son_name) && !empty($da_name)) {
-            $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . ',生子' . $son_name . '，女' . $da_name . '。';
+            $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . '，生子' . $son_name . '，女' . $da_name . '。';
           } elseif (!empty($son_name)) {
-            $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . ',生子' . $son_name . '。';
+            $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . '，生子' . $son_name . '。';
           } elseif (!empty($da_name)) {
-            $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . '妣,生女儿' . $da_name . '。';
+            $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . '妣，生女儿' . $da_name . '。';
           } else {
             $info = $sql_arr['name'] . '配' . $sql_arr['wname'] . '。';
           }
         }
+        
+        if (!empty($info) && $sql_arr['sex'] !== '女' && !empty($sql_arr['pid'])) {
         ?>
-        <td colspan="4"><input type="text" id="info" name="info" value="<?php echo $info;?>" readonly="readonly" /></td>
+          <td colspan="4"><input type="text" id="info" name="info" value="<?php echo $info;?>" readonly="readonly" /></td>
+        <?php
+        }
+        ?>
 <br>
 		</tr>
 	</tbody>
