@@ -42,7 +42,7 @@ $res=mysqli_query($link, "UPDATE tree_lr SET pid='$pid',name='$name',sex='$sex',
 if($res){
 	//这是代表成功
 	//这里就可以用跳转方法了 比如你的header重定向
-	$url='check.php?id='.$id;
+	$url='info2.php?id='.$id;
 	echo '编辑成功！';
 	header('Location:'.$url);
 
