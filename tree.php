@@ -91,5 +91,7 @@ function sonTree($arr, $tree, $level, $type) {
 
 
 $menu=lefttree();//调用函数
-
+if ($link && mysqli_ping($link)) {
+    mysqli_close($link);
+}
 ?>
