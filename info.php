@@ -1,30 +1,22 @@
 <?php
     require "conn.php";
     $id = $_GET['id'];
-    
-    // 创建预处理语句
-    $stmt = mysqli_prepare($link, "SELECT * FROM tree_lr WHERE id=?");
-    
-    // 绑定参数并执行查询
-    mysqli_stmt_bind_param($stmt, "i", $id);
-    mysqli_stmt_execute($stmt);
-    
-    // 获取查询结果
-    $result = mysqli_stmt_get_result($stmt);
-    $sql_arr = mysqli_fetch_assoc($result);
+    $sql = mysqli_query($link,"SELECT * FROM tree_lr WHERE id=$id");
+    $sql_arr = mysqli_fetch_assoc($sql);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>查看详情_刘三才族裔刘氏族谱</title>
-</head>
-	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="/css/info.css" />
 <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
 <!--主要样式-->
 <script type="text/javascript" src="/js/context-menu.js"></script>
 <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+</head>
 <body>
 
 	<div class="tree well">
@@ -105,7 +97,9 @@
     	</td>
     	</tr>
 		</table>
-		   		</div>
-   			</div>
+		   	 <br>
+      <a href="/" class="btn btn-primary">返回主页</a>
+    </div>
+  </div>
 </body>
 </html>
