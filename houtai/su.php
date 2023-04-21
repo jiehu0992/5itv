@@ -80,7 +80,7 @@ if('POST'==$_SERVER['REQUEST_METHOD']){
         }
     }elseif($id){//编辑
         if($node){
-            mysql_query('UPDATE `tree_lr` SET `name`=\''.addslashes($_POST['name']).'\' WHERE id='.$id) or die('修改节点是更新name值错误！'.mysql_error());
+            mysqli_query('UPDATE `tree_lr` SET `name`=\''.addslashes($_POST['name']).'\' WHERE id='.$id) or die('修改节点是更新name值错误！'.mysql_error());
             exit('true');
         }else{
             die('<font color="red">编辑的节点不存在！</font>');
