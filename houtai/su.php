@@ -76,7 +76,7 @@
 
 <?php
 //连接数据库
-$link = mysqli_connect("127.0.0.1", "root", "lsc606414lk", "demo");
+$link = mysqli_connect("127.0.0.1", "root", "root", "database");
 
 //查询所有节点
 $query = "SELECT id, name, pid, L, R FROM tree_lr ORDER BY L ASC";
@@ -104,8 +104,7 @@ buildTree($tree, 0, $output);
 //输出树形结构
 echo "<div class='tree'>" . $output . "</div>";
 //连接数据库
-$link = mysqli_connect("127.0.0.1", "root", "lsc606414lk", "demo");
-
+$link = mysqli_connect("127.0.0.1", "root", "root", "database");
 //查询所有节点
 $query = "SELECT id, name, pid, L, R FROM tree_lr ORDER BY L ASC";
 $result = mysqli_query($link, $query);
@@ -139,9 +138,6 @@ function buildTree($tree, $parent_id, &$output) {
             $output .= "<button class='tree-delete' data-id='{$node['id']}' title='删除'>删除</button>";
             $output .= "<a href='info2.php?id={$node['id']}' title='查看'>查看</a>";
             $output .= "<a href='infoedit2.php?id={$node['id']}' title='编辑'>编辑</a>";
-            $output .= "<a href='move.php?id={$node['id']}' title='移动'>移动</a>";
-            $output .= "<a href='moveup.php?id={$node['id']}' title='上移' class='tree-move-up'>上移</a>";
-            $output .= "<a href='movedown.php?id={$node['id']}' title='下移' class='tree-move-down'>下移</a>";
             $output .= "</span>";
             buildTree($tree, $node['id'], $output);
             $output .= "</li>";
