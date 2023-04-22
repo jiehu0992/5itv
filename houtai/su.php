@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>族谱增删改查</title>
 <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
 <style>
 .tree {
@@ -72,8 +76,7 @@
     vertical-align: middle;
 }
 </style>
-
-
+<body>
 <?php
 //连接数据库
 $link = mysqli_connect("127.0.0.1", "root", "root", "database");
@@ -105,6 +108,7 @@ buildTree($tree, 0, $output);
 echo "<div class='tree'>" . $output . "</div>";
 //连接数据库
 $link = mysqli_connect("127.0.0.1", "root", "root", "database");
+
 //查询所有节点
 $query = "SELECT id, name, pid, L, R FROM tree_lr ORDER BY L ASC";
 $result = mysqli_query($link, $query);
@@ -136,8 +140,9 @@ function buildTree($tree, $parent_id, &$output) {
             $output .= "<button class='tree-add' data-id='{$node['id']}' title='增加子女'>增加</button>";
             $output .= "<button class='tree-edit' data-id='{$node['id']}' title='修改'>修改</button>";
             $output .= "<button class='tree-delete' data-id='{$node['id']}' title='删除'>删除</button>";
-            $output .= "<a href='info2.php?id={$node['id']}' title='查看'>查看</a>";
-            $output .= "<a href='infoedit2.php?id={$node['id']}' title='编辑'>编辑</a>";
+            $output .= "<a href='info2.php?id={$node['id']}' title='查看' target='_blank'>查看</a>";
+            $output .= "<a href='infoedit2.php?id={$node['id']}' title='编辑' target='_blank'>编辑</a>";
+
             $output .= "</span>";
             buildTree($tree, $node['id'], $output);
             $output .= "</li>";
@@ -245,3 +250,5 @@ $(document).on('click', '.tree-delete', function() {
     }
 });
 </script>
+</body>
+</html>
