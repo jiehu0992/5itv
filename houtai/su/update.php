@@ -1,6 +1,6 @@
 <?php
 // Connect to the database
-$link = mysqli_connect("127.0.0.1", "root", "lsc606414lk", "demo");
+$link = mysqli_connect("127.0.0.1", "root", "root", "database");
 
 // Get the node's id and new name from the POST data
 $id = $_POST["id"];
