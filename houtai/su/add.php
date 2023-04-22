@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // 连接数据库
-    $link = mysqli_connect("127.0.0.1", "root", "lsc606414lk", "demo");
+    $link = mysqli_connect("127.0.0.1", "root", root, "database");
 
     // 获取参数
     $pid = $_POST['pid'];
