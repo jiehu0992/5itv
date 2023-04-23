@@ -11,7 +11,15 @@
 <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
 <body>
     <?php
-        $link = mysqli_connect("127.0.0.1", "root", "lsc606414lk", "demo");
+    session_start();
+require_once 'functions.php';
+
+// 验证用户是否已登录，未登录则跳转到登录页面
+if (!is_logged_in()) {
+    $url = 'login.php?url=' . urlencode($_SERVER['REQUEST_URI']);
+    redirect($url);
+}
+        $link = mysqli_connect("127.0.0.1", "root", "root", "database");
     if (!$link) {
         die("连接失败: " . mysqli_connect_error());
     }
@@ -103,6 +111,7 @@ while ( $rowx=mysqli_fetch_array($sqlx)) {//取出并拼接本人兄弟或姐妹
         if($sql_arr['sex']=="男"){$paih_x="長子";}else{$paih_x="長女";}
     }
 }else{$paih_x = $sql_arr['rank'];}//已定义排行的直接取出，不再执行判断代码
+mysqli_close($link); //关闭数据库连接
 ?>
 		<div class="tree well">
 	<div align=center>
@@ -322,7 +331,7 @@ while ( $rowx=mysqli_fetch_array($sqlx)) {//取出并拼接本人兄弟或姐妹
 			<td width="4%" >国籍：</td>
 			<td width="13%"><input  type="text" name="nation" value="<?php echo $sql_arr['nation']?>"> </td>
 			<td width="4%" >籍贯：</td>
-			<td width="13%"><input  type="text" name="jiguan" value="<?php echo $sql_arr['jiguan']?>"> </td>
+			<td width="13%"><input type="text" name="jiguan" value="<?php echo !empty($sql_arr['jiguan']) ? $sql_arr['jiguan'] : '四川省邻水县'; ?>"></td>
 			<td width="4%" >字：</td>
 			<td width="13%"><input  type="text" name="zi" value="<?php echo $sql_arr['zi']?>"> </td>
 		</tr>
