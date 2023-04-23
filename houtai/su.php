@@ -78,63 +78,36 @@
 </style>
 <body>
 <?php
-//连接数据库
+// 连接数据库
 $link = mysqli_connect("127.0.0.1", "root", "root", "database");
 
-//查询所有节点
-$query = "SELECT id, name, pid, L, R FROM tree_lr ORDER BY L ASC";
+// 查询所有节点
+$query = "SELECT id, name, pid, L, R, sex FROM tree_lr ORDER BY L ASC";
 $result = mysqli_query($link, $query);
 
-//构建节点数组
+// 构建节点数组
 $nodes = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $nodes[] = $row;
-}
-
-//构建树状结构
-$tree = array();
-foreach ($nodes as $node) {
-    $pid = $node['pid'];
-    if (!isset($tree[$pid])) {
-        $tree[$pid] = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $nodes[] = $row;
     }
-    $tree[$pid][] = $node;
-}
-//生成树形结构
-$output = "";
-buildTree($tree, 0, $output);
 
-//输出树形结构
-echo "<div class='tree'>" . $output . "</div>";
-//连接数据库
-$link = mysqli_connect("127.0.0.1", "root", "root", "database");
-
-//查询所有节点
-$query = "SELECT id, name, pid, L, R FROM tree_lr ORDER BY L ASC";
-$result = mysqli_query($link, $query);
-
-//构建节点数组
-$nodes = array();
-while ($row = mysqli_fetch_assoc($result)) {
-    $nodes[] = $row;
-}
-
-//构建树状结构
+// 构建树状结构
 $tree = array();
-foreach ($nodes as $node) {
-    $pid = $node['pid'];
-    if (!isset($tree[$pid])) {
-        $tree[$pid] = array();
+    foreach ($nodes as $node) {
+        $pid = $node['pid'];
+        if (!isset($tree[$pid])) {
+            $tree[$pid] = array();
+        }
+        $tree[$pid][] = $node;
     }
-    $tree[$pid][] = $node;
-}
 
-//递归构建树
-function buildTree($tree, $parent_id, &$output) {
+// 递归构建树
+function buildTree($tree, $parent_id, $output) {
+    $output .= "<ul>";
     if (isset($tree[$parent_id])) {
-        $output .= "<ul>";
         foreach ($tree[$parent_id] as $node) {
-            $output .= "<li>";
+            $color = ($node['sex'] == '女') ? 'style="color:#ff1493"' : '';
+            $output .= "<li $color>";
             $output .= $node['name'];
             $output .= "<span class='tree-buttons'>";
             $output .= "<button class='tree-add' data-id='{$node['id']}' title='增加子女'>增加</button>";
@@ -142,22 +115,22 @@ function buildTree($tree, $parent_id, &$output) {
             $output .= "<button class='tree-delete' data-id='{$node['id']}' title='删除'>删除</button>";
             $output .= "<a href='info2.php?id={$node['id']}' title='查看' target='_blank'>查看</a>";
             $output .= "<a href='infoedit2.php?id={$node['id']}' title='编辑' target='_blank'>编辑</a>";
-
             $output .= "</span>";
-            buildTree($tree, $node['id'], $output);
+            $output = buildTree($tree, $node['id'], $output);
             $output .= "</li>";
         }
-        $output .= "</ul>";
     }
+    $output .= "</ul>";
+    return $output;
 }
 
-//生成树形结构
-$output = "";
-buildTree($tree, 0, $output);
+// 生成树形结构
+$output = buildTree($tree, 0, "");
 
-//输出树形结构
-echo "<div class='tree'>" . $output . "</div>";
+// 输出树形结构
+echo "<div class='tree'>$output</div>";
 ?>
+
 
 <script>
     // Function to handle the click event of the "edit" button
