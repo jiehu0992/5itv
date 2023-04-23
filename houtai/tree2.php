@@ -1,5 +1,18 @@
 <?php
-include("../conn.php");//数据库连接
+session_start();
+require_once 'functions.php';
+
+// 验证用户是否已登录，未登录则跳转到登录页面
+if (!is_logged_in()) {
+    $url = 'login.php?url=' . urlencode($_SERVER['REQUEST_URI']);
+    redirect($url);
+}
+$link = mysqli_connect("127.0.0.1", "root", "root", "database");
+
+if (!$link) {
+    die("连接失败: " . mysqli_connect_error());
+}
+
 $stmt = mysqli_prepare($link, "SELECT COUNT(*) AS total, MAX(dc) AS maxdc FROM tree_lr WHERE name NOT LIKE ?");
 $search_term = '%出%';
 mysqli_stmt_bind_param($stmt, 's', $search_term);
@@ -84,5 +97,7 @@ function sonTree($arr, $tree, $level, $type) {
 }
 
 $menu = lefttree(); //调用函数
-  mysqli_close($link); //关闭数据库连接
+ if ($link && mysqli_ping($link)) {
+    mysqli_close($link);
+}
 ?>
