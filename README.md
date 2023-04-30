@@ -4,7 +4,7 @@
 
 [php版本7.4 数据库名treelcopy，如要修改为自己的数据库名如tree,请将conn.php里面的treelcopy修改为tree 数据库 **账号密码 均为root** 后台登录账号admin密码123如需修改请在login.php文件内修改账号密码</br>
 
-  **  **一、** ** 已实现功能 源码无架构，目前有族谱树、欧式族谱、塔式族谱、ztree样式 、excel（可接入传承家谱）五种样式，其中族谱树有详情页传值单独页面</br>
+  **  **一、** ** 已实现功能 源码无架构，目前有族谱树、欧式族谱、塔式族谱、ztree样式 、excel（可接入传承家谱）、word现代版家谱六种样式，其中族谱树有详情页传值单独页面</br>
 
   **  **二、** ** 目前存在的问题需要优化 </br>
 
@@ -15,7 +15,7 @@
 
 2、新增其它样式
 
-3、实现数据导出world、pdf输出 
+3、实现数据导出pdf输出 
 
 四、远期计划 
 
@@ -39,6 +39,7 @@ http://demo.tvsbar.com/index.php</br>
 塔式版式家谱 http://demo.tvsbar.com/bt.php </br>
 
 ztree样式  http://demo.tvsbar.com/ztree.html </br>
+word现代版家谱(一个树，多个树见注释）  http://demo.tvsbar.com/word.html</br>
 ### 关键代码
 
 **7代人输出样式（欧式、苏式、word版样式关键代码-20230430）https://demo.tvsbar.com/7id.php**  </br>
