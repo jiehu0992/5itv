@@ -50,7 +50,8 @@ ztree样式  http://demo.tvsbar.com/ztree.html </br>
 ### 关键代码
 
 **7代人输出样式（欧式、苏式、word版样式关键代码-20230430）https://demo.tvsbar.com/7id.php**  </br>
- **根据id自定义输出几代人样式（印刷出谱欧式、苏式、word版样式关键代码-20230430）https://demo.tvsbar.com/7nid.php**  </br>
+
+**根据id自定义输出几代人样式（印刷出谱欧式、苏式、word版样式关键代码-20230430）https://demo.tvsbar.com/7nid.php**  </br>
 
 电视直播 http://www.tvsbar.com</br>
 
