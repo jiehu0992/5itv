@@ -41,6 +41,12 @@ http://demo.tvsbar.com/index.php</br>
 ztree样式  http://demo.tvsbar.com/ztree.html </br>
 
  **word现代版家谱** (一个树，多个树见注释）  http://demo.tvsbar.com/word.php</br>
+
+
+ **word现代版家谱** (标准家谱 按世代顺序 一次输出）  http://demo.tvsbar.com/word2.php</br>
+
+
+ **word现代版家谱** (备用家谱 按一房人输出后再输出另外的一房人）  http://demo.tvsbar.com/word3.php</br>
 ### 关键代码
 
 **7代人输出样式（欧式、苏式、word版样式关键代码-20230430）https://demo.tvsbar.com/7id.php**  </br>
