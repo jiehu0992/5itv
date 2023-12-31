@@ -1,0 +1,28 @@
+显示图片层<div id=tong>图片路径</div>
+layer.open({
+  type: 1,
+  title: false,
+  closeBtn: 0,
+  area: ['auto'],
+  //skin: 'layui-layer-nobg', //没有背景色
+  shadeClose: true,
+  content: $('#tong')
+});
+
+
+function getid(a){id=(a.id)}
+	$(document).ready(function(){
+		//iframe弹出层调用
+		$('.outside').click(function(){
+		    layer.open({
+			type: 2,
+			title: '编辑详情',//标题
+			shadeClose: true,//是否已点击遮罩层关闭
+			shade: 0.6,//遮罩透明度
+			anim: 1,//动画效果
+			//maxmin: true, //开启最大化最小化按钮
+			area: ['66%','88%'],//尺寸大小
+			content: [id,'no']//内容，id为url
+			});
+		});
+	})
