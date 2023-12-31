@@ -1,0 +1,84 @@
+body {
+			font-family: Arial, sans-serif;
+			background-color: #f5f5f5;
+		}
+		.tree {
+			background-color: #fff;
+			border-radius: 10px;
+			padding: 20px;
+			margin: 20px auto;
+			max-width: 800px;
+			box-shadow: 0 0 10px rgba(0,0,0,0.2);
+			position: relative;
+			text-align: center;
+			color: #333;
+		}
+		.tree label {
+			font-size: 16px;
+			font-weight: bold;
+			margin-right: 5px;
+		}
+		.tree input[type="text"] {
+			width: 80px;
+			height: 25px;
+			font-size: 16px;
+			padding: 2px;
+			border-radius: 4px;
+			border: none;
+			text-align: center;
+			background-color: #eee;
+			color: #666;
+			margin-right: 5px;
+		}
+		.tree table {
+			margin-top: 20px;
+			border-collapse: collapse;
+			width: 100%;
+		}
+		.tree td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+		.tree p {
+			margin: 10px 0;
+			font-size: 16px;
+			line-height: 24px;
+		}
+		.tree .btn-primary {
+			background-color: #007bff;
+			border-color: #007bff;
+			color: #fff;
+			border-radius: 4px;
+			padding: 6px 12px;
+			font-size: 16px;
+			text-decoration: none;
+			display: inline-block;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			transition: all 0.2s ease-in-out;
+		}
+		.tree .btn-primary:hover {
+			background-color: #0069d9;
+			border-color: #0062cc;
+			text-decoration: none;
+			color: #fff;
+		}
+		.tree .mx-2 {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.tree a {
+			text-decoration: none;
+			color: #fff;
+			border: none;
+		}
+		.tree a:hover {
+			color: #fff;
+			text-decoration: none;
+			border: none;
+		}
+		.red {
+			color: red;
+			font-weight: bold;
+			font-size: 20px;
+		}

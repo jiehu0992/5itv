@@ -1,0 +1,62 @@
+.tree {
+    min-height:1rem;
+    padding:1rem;
+    margin-bottom:1rem;
+    background-color:#fbfbfb;
+    /*border:1px solid #999;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px;
+    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05)*/
+}
+.tree li {
+    list-style-type:none;
+    margin:0;
+    padding:0.5rem 0.5rem 0;
+    position:relative;
+	min-width: 13rem;
+}
+.tree li::before, .tree li::after {
+    content:'';
+    left:-1rem;
+    position:absolute;
+    right:auto;
+}
+.tree li::before {
+    border-left:1px solid #999;
+	/*bottom:3.1rem;*/
+    height:100%;
+    top:0;
+    width:1px
+}
+.tree li::after {
+    border-top:1px solid #999;
+    height:1rem;
+    top:1.5rem;
+    width:1.5rem;
+}
+.tree li span {
+    -moz-border-radius:0.3rem;
+    -webkit-border-radius:0.3rem;
+    border:1px solid #999;
+    border-radius:0.3rem;
+    display:inline-block;
+    padding:0.2rem 0.5rem;
+    text-decoration:none
+}
+.tree li.parent_li>span {
+    cursor:pointer
+}
+.tree>ul>li::before, .tree>ul>li::after {
+    border:0;
+}
+.tree li:last-child::before {
+    height:1.5rem;
+}
+.tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
+    background:#eee;
+    border:1px solid #94a0b4;
+     color:#ff0000;
+}
