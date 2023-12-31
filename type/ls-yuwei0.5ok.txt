@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: '微软雅黑', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .fish-tail {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            background-color: #ff0000; /* 长方形填充颜色 */
+        }
+
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 100px solid transparent;
+            border-right: 100px solid transparent;
+            border-bottom: 50px solid #ffffff; /* 三角形底部底色为白色，底边与长方形下底边完全重合 */
+            top: 25%; /* 使三角形底边沿着长方形中线向下移动其高度的50% */
+            left: 50%; /* 使三角形居中 */
+            margin-left: -100px; /* 通过负的margin值使三角形居中 */
+            transform-origin: bottom; /* 旋转中心为底边中点 */
+            transform: rotate(0deg); /* 不旋转，使其成为等腰三角形 */
+        }
+
+        .triangle:nth-child(odd) {
+            margin-top: 25px; /* 设置间隔为长方形高度的1/2 */
+        }
+
+        .triangle:nth-child(even) {
+            margin-top: -75px; /* 设置间隔为长方形高度的1/2，-100px + 25px = -75px */
+        }
+    </style>
+    <title>中国家谱</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">家谱</div>
+        <!-- 家谱内容 -->
+
+        <!-- 鱼尾设计 -->
+        <div class="fish-tail">
+            <div class="triangle"></div>
+            <!-- 可以根据需要增加更多的三角形 -->
+        </div>
+    </div>
+</body>
+</html>

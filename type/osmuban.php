@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>欧式筒子页空白模板不含鱼尾图</title>
+    <style>
+        body {
+            font-family: "Microsoft JhengHei", Arial, sans-serif;
+            margin: 2.54cm 3.18cm; /* Set top and bottom margins to 2.54cm and left and right margins to 3.18cm */
+            padding: 0;
+            width: 42cm; /* Set A3 paper width */
+            height: 29.7cm; /* Set A3 paper height */
+            box-sizing: border-box;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            height: 100%;
+            border: 5px solid red;
+            margin: 5px;
+            text-align: center; /* 居中文本 */
+        }
+
+        td {
+            border: 1px solid red;
+            box-sizing: border-box;
+            padding: 0; /* Remove default padding */
+            margin: 0; /* Remove default margin */
+            font-size: 12px;
+            line-height: 1.4;
+            text-align: center;
+            vertical-align: middle; /* 垂直居中 */
+            position: relative;
+        }
+
+        /* Adjust the width of the 10th column to be 20% larger */
+        td:nth-child(10) {
+            width: 10%; /* Set the width to 10% of other columns */
+        }
+
+        img {
+            width: 100%; /* Scale down the image to 90% of its container */
+            height: auto; /* Maintain the aspect ratio */
+            max-height: 100%; /* Limit image height within the table cell to 90% */
+        }
+
+        /* Additional styling for better visual harmony */
+        td:not(:nth-child(10)) {
+            width: 5%; /* Adjust width for other columns for better harmony */
+        }
+    </style>
+    <title>中文古籍筒子页</title>
+</head>
+<body>
+    <table>
+        <?php
+        // 生成3行19列的布局
+        for ($row = 1; $row <= 3; $row++) {
+            echo '<tr';
+
+            // 添加样式，设置行高为总行高的 1/12
+            if ($row == 1 || $row == 2) {
+                echo ' style="height: calc(100% / 12);"';
+            }
+
+            echo '>';
+
+            for ($col = 1; $col <= 9; $col++) {
+                echo '<td></td>';
+            }
+
+            // 特殊处理第10列
+            if ($row == 1) {
+                echo '<td rowspan="3" style="padding: 0; border: 0; border-right: 2px solid red; position: relative; height: 100%;">';
+                echo '<table style="height: 100%; width: 100%; border-collapse: collapse;">';
+                echo '<tr style="height: 10%;"></tr>'; /* Updated height for the first row */
+                echo '<tr style="height: 0;"><td><img src="fishs.png" alt="Fish Tail"></td></tr>'; /* Updated height for the second row */
+                echo '<tr style="height: calc(6/13 * 100%);"><td></td></tr>';
+                echo '<tr style="height: 0;"><td><img src="fishx.png" alt="Fish Tail"></td></tr>'; /* Updated height for the fourth row */
+                echo '<tr style="height: 10%;"></tr>'; /* Updated height for the fifth row */
+                echo '</table>';
+                echo '</td>';
+            } elseif ($row == 2 || $row == 3) {
+                // 第2和第3行跳过第10列的单元格
+                echo '<td></td>';
+            }
+
+            for ($col = 11; $col <= 18; $col++) {
+                echo '<td></td>';
+            }
+
+            echo '</tr>';
+        }
+        ?>
+    </table>
+</body>
+</html>
