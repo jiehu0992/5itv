@@ -1,0 +1,20 @@
+注意，在使用本系统前，需先做以下工作，避免出错
+1、测试及运行环境：windows10 LAMP+PHP 版本号为：7.4.32 
+使用软件phpStudy2016:http://public.xp.cn/upgrades/phpStudy20161103.zip 
+php-7.4.32-nts：https://windows.php.net/downloads/releases/archives/php-7.4.32-nts-Win32-vc15-x64.zip
+phpStudy2016识别php-7.4.32-nts需修改php-7.4.32-nts配置（解压下载的php-7.4.32-nts-Win32-vc15-x64.zip到D:\phpStudy\php\，然后修改D:\phpStudy\php\php-7.4.32-nts\php.ini，如不会修改直接用\db\额外文件php-7.4.32-nts配置文件\php.ini中的php.ini覆盖自己刚解压的php-7.4.32-nts\php.ini即可。
+2、type目录为样式目录，admin为后台目录，前端（首页index.php对应的目录）数据库相关信息修改文件为conn.php，后台（admin目录下）数据库相关信息修改文件为conn.php即http://localhost/admin/conn.php
+数据库文件在db目录下
+3、admin目录下login.php中第29行修改登录账号及密码
+4、添加数据（快速添加名字，点击人名对应的行的“快速添加”添加的是子女）
+http://localhost/admin/su.php
+数据库默认添加一条数据，自行修改（修改名字只需要单击名字，然后输入名字回车确认即修改完成），如清空数据，需执行一条id自增语句,否则会出错，切记！！！
+ALTER TABLE `tree_lr` MODIFY COLUMN `id` INT AUTO_INCREMENT;
+“快速添加”后记得刷新，才能看到刚新增的人员
+5、通过http://localhost/admin/su.php中的“详情编辑”进入编辑页面，以始祖的详情页面为例，
+http://localhost/admin/infoedit2.php?id=1
+需更新世代、字辈、配偶名字，其中世代值很重要，后面很多地方都要调用世代字段。找到infoedit2.php的253行、300行进行世代、字辈修改，世代值为数字，字辈一般是单个的汉字。需要说明的是如“<option value="16">16廣</option>”，在数据库写入的数据是16，“16廣”只是为了查看选择方便与字辈比对，如果你很熟悉，完全可以修改为“<option value="16">16</option>”
+infoedit2.php中不能输入的都是自动获取的，在你修改完毕后可再次刷新页面看是否与实际一致如一致，再提交一次，生平信息等即写入数据库了。
+添加配偶中的信息一般家谱只用得到配偶姓名一栏，但有的家谱可能还包括了岳父母的信息，现代家谱也很多把妻子的信息记得很详细，故保留。
+6、Type目录下位样式文件，很多，具体什么是什么样式一般在文档的头部或者标题上有注明，欧式谱、苏式欧式结合的样式目前还是有难度，只做出来了几个筒子页，一步步来吧，其他的word样式、宝塔样式根据需求自取。样式里很多运行显示有错误提示是因为你的数据量没那么多如id值等，数据添加到那么多或者删去那部分即可
+7、如运行错误，请发邮件给我1517152664@qq.com

@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>404错误</title>
+<link href="http://qzonestyle.gtimg.cn/qzone_v6/lostchild/style.css" rel="stylesheet">
+<style type="text/css">
+body{ font-size:100%; font-family:"Microsoft YaHei","Arial"; background:#fff;}
+#nav{ position:relative; width:980px; _width:990px; margin:1px auto 0 auto; border-bottom:2px #ddd solid;}
+#nav .nav-menu{ height:50px;}
+#nav .nav-menu a{ display:block; float:left; height:50px; padding:0 30px; line-height:50px; color:#666; font-size:16px; text-decoration:none;}
+#nav .nav-current{ position:absolute; bottom:-2px; height:2px; overflow:hidden; background:#80b600;}
+</style>
+<script id="jquery_172" type="text/javascript" class="library" src="http://www.tvsbar.com/css/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+
+(function(){
+var $navcur = $(".nav-current");
+var $nav = $("#nav");
+var current = ".current";
+var itemW = $nav.find(current).innerWidth();	//默认当前位置宽度
+var defLeftW = $nav.find(current).position().left;	//默认当前位置Left值
+
+//添加默认下划线
+$navcur.css({width:itemW,left:defLeftW});
+
+//hover事件
+$nav.find("a").hover(function(){
+	var index = $(this).index();	//获取滑过元素索引值
+	var leftW = $(this).position().left;	//获取滑过元素Left值
+	var currentW = $nav.find("a").eq(index).innerWidth();	//获取滑过元素Width值
+	$navcur.stop().animate({
+		left: leftW,
+		width: currentW
+	},100);
+
+},function(){
+	$navcur.stop().animate({
+		left: defLeftW,
+		width: itemW
+	},100)
+})
+})();
+
+});
+</script>
+</head>
+<body>
+<div id="nav">
+	<div class="nav-menu">
+	<a href="http://www.tvsbar.com/" class="current" title="tvsbar" >tvsbar中文</a>
+	<a href="http://www.5itv.org/" title="tvfans" >tvsbar英文</a>
+	<a href="http://bbs.5itv.org/" title="中国电视资讯论坛" >中国电视资讯论坛</a>
+	</div>
+	<div class="nav-current"></div>
+</div>
+<div id="divadleft" style="position: absolute; width: 160px; word-break: break-all;top:1px; left: 0px; padding-left:1px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- zsy -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3237535343338991"
+     data-ad-slot="8299566634"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<div id="divadright" style="position: absolute; width: 160px; word-break: break-all;top:1px; right: 1px; padding-right: 1px;">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- zsy -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3237535343338991"
+     data-ad-slot="8299566634"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3237535343338991",
+    enable_page_level_ads: true
+  });
+</script>
+
+<p style="display:none">The pages you visit brought back, but together we can find the missing baby</p>
+
+<div align="center">
+  <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone_v6/lostchild/search_children.js"></script>
+</div>
+<div style="display:none;">
+</body>
+</html>
